@@ -1,0 +1,113 @@
+ollama --version
+
+
+If Ollama is installed and available in your terminal, download the model:
+ollama pull qwen3:1.7b
+
+
+Test the model directly:
+ollama run qwen3:1.7b
+
+
+When the prompt appears, type a test question, such as:
+Explain what offline mode means on this computer.
+
+
+To leave the model's interactive session, enter:
+/bye
+
+
+2. Install the Python tools for A.D.A.
+Install the basic dependencies:
+sudo apt install -y python3 python3-venv python3-pip unzip git
+
+
+Create a project folder and Python virtual environment:
+mkdir -p ~/Cyberdeck
+cd ~/Cyberdeck
+python3 -m venv ada-env
+source ada-env/bin/activate
+python -m pip install --upgrade pip
+
+
+Whenever you want to work on A.D.A. later, activate the environment with:
+cd ~/Cyberdeck
+source ada-env/bin/activate
+
+
+3. Extract your A.D.A. project
+Copy your ada_local-main.zip archive onto the Pi, then locate it. If you saved it in your Downloads folder, run:
+ls ~/Downloads
+
+
+Extract it into the Cyberdeck directory:
+mkdir -p ~/Cyberdeck/ada
+unzip ~/Downloads/ada_local-main.zip -d ~/Cyberdeck/ada
+
+
+If the ZIP is somewhere else, replace ~/Downloads/ada_local-main.zip with its actual path.
+Inspect the extracted files:
+cd ~/Cyberdeck/ada
+find . -maxdepth 3 -type f | sort | head -200
+
+
+Look for project instructions and dependency files:
+find . -maxdepth 3 -type f \( -name "README*" -o -name "requirements.txt" -o -name "pyproject.toml" -o -name "environment.yml" \)
+
+
+If the project contains a requirements.txt, install its listed dependencies inside the activated virtual environment:
+python -m pip install -r requirements.txt
+
+
+Run that command from the directory containing the file. If the project has a pyproject.toml instead, follow its installation instructions.
+4. Find the command that launches A.D.A.
+Because I don't have the current contents of your project archive in this message, I can't safely guarantee the exact Python launch filename. Inspect its instructions and Python entry points:
+find . -maxdepth 3 -type f -name "*.py" | sort
+
+
+find . -maxdepth 2 -type f -iname "readme*"
+
+
+Read the relevant README:
+cat README.md
+
+
+If the README specifies a command such as python main.py, use the filename and command it actually documents. Don't assume main.py exists.
+Two known issues from your earlier project need attention before launch:
+- The gui/assets/ directory was missing.
+- core/stt.py contained a hardcoded CUDA setting, which may not work on the Raspberry Pi.
+Those issues may need fixing before the complete A.D.A. interface and speech recognition can start.
+5. Test the AI service separately
+With Ollama installed and the model downloaded, check that its local API responds:
+curl http://localhost:11434/api/tags
+
+
+This should return a list of downloaded models. You can test a prompt without opening the interactive model session:
+curl http://localhost:11434/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"model":"qwen3:1.7b","messages":[{"role":"user","content":"Hello, A.D.A."}],"stream":false}'
+
+
+The model name must match the model you downloaded. Ollama's official model page documents this model and its command-line usage. 
+
+ollama.com
++1
+
+
+
+6. Start A.D.A. during normal use
+Once the Python project is configured and its launch command is confirmed, the routine will look like this:
+# Start the local AI model
+ollama run qwen3:1.7b
+
+
+Then, in a second terminal, activate the Python environment and launch the A.D.A. application using its verified entry point.
+Important: Running the model in Ollama proves that the language model works; it does not automatically start your custom A.D.A. interface, speech recognition, or dashboard.
+For the exact final launch command, paste the output of these two commands from inside the extracted project directory:
+find . -maxdepth 3 -type f | sort | head -200
+
+
+find . -maxdepth 3 -type f \( -name "README*" -o -name "requirements.txt" -o -name "pyproject.toml" \)
+
+
+That will let us identify the real entry point instead of guessing.
