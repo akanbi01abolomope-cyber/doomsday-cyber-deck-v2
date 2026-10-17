@@ -1,0 +1,13 @@
+Item,Category,Qty,Status,Specification / source basis,Estimated unit cost USD,Notes / validation
+Main enclosure,Mechanical,1,Existing case / verify internal dimensions,User stated internal 405x298x143 mm,TBD,"Measure closed-case lid/base split, foam and hinges"
+13.3-inch HDMI monitor,Display,1,Selected / fit not verified,Approx. 306x179 mm body per user,44.00,"Confirm exact model, mounting points, input and connector locations"
+Raspberry Pi 5 bundle,Compute,1,Selected / bundle contents to verify,Pi 5; RAM and PSU still need confirmation,190.00,Use proper USB-C supply or protected power source per Pi requirements
+2.5-inch SATA removable enclosure,Storage,1,Not selected,Choose actual carrier dimensions and USB bridge,TBD,"Side bay A; verify interface, retention, USB bridge and power"
+3.5-inch SATA enclosure/dock,Storage,1,Not selected,Must explicitly support target capacity (e.g. 30 TB),TBD,Side bay B; powered enclosure; confirm dimensions and supplied PSU
+Front-panel switches,Controls,7,Not selected,1 master-power switch rated for power architecture; 3 maintained logic switches; 2 momentary buttons; AUX/selector per final plan,TBD,Do not use PCB/GPIO as main power switch; exact hole sizes from datasheets
+Status LED indicator,Controls,1,Not selected,3.3V-compatible indicator or LED with calculated resistor,TBD,PCB concept supports low-voltage status output
+Drive activity indicator,Controls,1,Optional / interface dependent,Only if USB bridge exposes activity or software can query it,TBD,Not guaranteed with every USB-to-SATA bridge
+Front-panel interface PCB,Electronics,1,Concept source included; unrouted,Low-voltage GPIO switch/LED breakout only,TBD,Schematic/netlist/layout review and DRC required before fabrication
+Power system,Power,1,Not selected,"Protected off-the-shelf system; appropriate outputs for Pi, monitor and 3.5-inch dock",TBD,Do not build a custom battery pack from this concept; validate with qualified review
+USB hub/cables,Connectivity,1,Not selected,Powered hub if device power/port count requires it,TBD,Check USB 3 and actual device current requirements
+Mounting hardware and foam,Mechanical,1,Not selected,"Mounting plate, fasteners, foam clearances",TBD,Measure real components before drilling/cutting
