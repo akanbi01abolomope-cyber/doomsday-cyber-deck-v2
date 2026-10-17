@@ -1,0 +1,501 @@
+# Doomsday Cyberdeck — Complete Assembly and Setup Instructions
+
+## 1. Project Overview
+
+The Doomsday Cyberdeck is a portable, rugged computer designed to operate offline. It combines a Raspberry Pi 5, a 13.3-inch display, removable hard drives, a physical control panel, a local AI assistant called A.D.A., offline reference materials, maps, and future radio and GPS capabilities.
+
+The case has internal dimensions of approximately 405 × 298 × 143 mm. The build uses standard wiring and a GPIO breakout board. No custom PCB is being used.
+
+The instructions below describe the planned assembly. Component fit, wiring, and software must be tested on the actual hardware before the project can be considered complete.
+
+## 2. Hardware and Components
+
+### Main computer and display
+
+- Raspberry Pi 5 bundle.
+- Compatible microSD card for the operating system.
+- Raspberry Pi 5-compatible USB-C power supply, if not included.
+- Compatible cooling system for the Raspberry Pi 5, if not included.
+- 13.3-inch non-touch HDMI monitor, approximately 306 × 179 mm.
+- Correct power adapter for the monitor, reported as 12 V, 2 A.
+- Micro-HDMI-to-HDMI cable compatible with the Raspberry Pi 5.
+- Fintie Ultra-Slim Bluetooth keyboard with trackpad.
+
+### Removable storage
+
+Bay A — 2.5-inch SATA HDD
+
+- One 2.5-inch SATA laptop hard drive.
+- One compatible USB-to-SATA enclosure or removable tray system.
+- Appropriate USB data cable.
+- A mounting bracket and retention mechanism.
+
+Bay B — 3.5-inch SATA HDD
+
+- One 3.5-inch SATA desktop hard drive.
+- One powered USB-to-SATA enclosure or dock.
+- The enclosure's specified power adapter.
+- A USB data cable.
+- A mounting bracket and retention mechanism.
+
+The 3.5-inch enclosure must explicitly support the capacity of the intended hard drive, including 30 TB if that is the chosen drive. Do not assume every enclosure supports that capacity.
+
+### Physical controls and wiring
+
+- One GPIO breakout board compatible with the Raspberry Pi 5's 40-pin header.
+- Suitable ribbon cable, if required by the breakout board.
+- Panel-mounted master-power control appropriate for the chosen power system.
+- Panel-mounted display control.
+- Panel-mounted radio-enable control for future radio hardware.
+- Panel-mounted fan-mode control.
+- Normally-open momentary button for orderly shutdown.
+- Status LED with a suitable current-limiting resistor or compatible LED module.
+- Optional drive-activity indicator, subject to interface support.
+- AUX/mode button or switch.
+- Appropriate hookup wires, connectors, labels, heat-shrink tubing, and cable ties.
+- Mounting plate, standoffs, screws, washers, brackets, and a rigid monitor bezel.
+- Foam padding that does not obstruct cooling or place pressure on components.
+
+A breadboard may be used to test the control circuits before installing the final wiring.
+
+## 3. Case Layout
+
+The case should be divided into several functional areas.
+
+Lid
+
+- Mount the 13.3-inch monitor in a rigid bezel or mounting plate.
+- Keep the monitor's power and HDMI connectors accessible.
+- Ensure the lid can close without pressing against the display or its cables.
+
+Main base
+
+- Mount the Raspberry Pi 5 on suitable standoffs.
+- Position the Pi so its cooling system has unobstructed airflow.
+- Keep the microSD card, USB ports, and HDMI connectors accessible.
+- Provide space for the GPIO breakout and wiring.
+
+Left side
+
+- Install the removable 2.5-inch SATA drive bay.
+- Provide enough clearance to remove the drive or enclosure without disturbing the monitor or Pi.
+
+Right side
+
+- Install the removable 3.5-inch SATA drive bay.
+- Provide room for its larger enclosure, power connector, USB connector, and ventilation.
+
+Control panel
+
+- Arrange the physical switches and buttons in a compact, clearly labeled layout.
+- Use the selected switches' datasheets to determine mounting-hole diameters and spacing.
+- Keep the panel removable where practical to simplify repairs.
+
+The layout must be measured with the actual components before cutting the case. The enclosure dimensions alone do not establish the exact mounting positions.
+
+## 4. Mechanical Assembly
+
+### Step 1 — Prepare the case
+
+1. Remove loose contents and inspect the case, hinges, latches, and foam.
+2. Measure the usable interior of both the lid and base.
+3. Record the thickness and position of any foam that will remain.
+4. Make paper or cardboard templates for the monitor, Raspberry Pi, drive enclosures, and control panel.
+5. Check that all components fit while leaving room for connectors and cables.
+
+Do not cut holes until the actual components have been measured.
+
+### Step 2 — Install the monitor
+
+1. Create or obtain a rigid mounting plate or bezel sized for the actual monitor.
+2. Mark the mounting positions using the monitor's real dimensions and mounting points.
+3. Secure the monitor using appropriate hardware.
+4. Route the HDMI and power cables without sharp bends.
+5. Open and close the lid slowly to check for cable pinching.
+
+Foam can cushion the monitor but should not be its only mechanical support.
+
+### Step 3 — Mount the Raspberry Pi 5
+
+1. Attach the Pi to a suitable mounting plate using appropriate standoffs.
+2. Confirm that no conductive surface can contact exposed circuitry.
+3. Install the compatible cooling system according to its manufacturer's instructions.
+4. Leave access to the USB, HDMI, USB-C power, and microSD connections.
+5. Keep the fan intake and exhaust clear.
+
+### Step 4 — Install the removable drive bays
+
+1. Fit the 2.5-inch enclosure into the designated side opening.
+2. Secure it with a bracket or mounting hardware.
+3. Confirm that its removable tray or enclosure can be released.
+4. Repeat on the opposite side with the 3.5-inch enclosure.
+5. Provide ventilation and clearance for the 3.5-inch enclosure's power and USB connectors.
+6. Secure cables with strain relief so repeated drive removal does not pull on the Raspberry Pi.
+7. Test both removal paths before installing the remaining electronics.
+
+The two drives will connect to the computer through USB-to-SATA hardware. They do not connect directly to the GPIO breakout board.
+
+### Step 5 — Install the control panel
+
+1. Select the actual switches and buttons.
+2. Mark the panel using the manufacturers' specified cutout dimensions.
+3. Install each control and secure its retaining hardware.
+4. Add readable labels.
+5. Leave enough room behind the panel for connectors and wiring.
+
+## 5. Power System
+
+The Raspberry Pi, monitor, and 3.5-inch hard drive have different power requirements.
+
+The planned power arrangement is:
+
+- Raspberry Pi 5: compatible USB-C power supply.
+- Monitor: its verified, compatible power adapter or a properly designed power source providing the specified input.
+- 3.5-inch HDD enclosure: the enclosure's specified power supply.
+- 2.5-inch HDD enclosure: USB power only if the selected enclosure and drive support it.
+- Other USB peripherals: a suitable powered USB hub if required.
+
+For portable operation, use a commercially manufactured power station or other appropriately protected power system with sufficient rated outputs and capacity. Calculate the expected power consumption before selecting one.
+
+Do not build a custom lithium battery pack as part of this wiring plan. Do not open power adapters or modify mains wiring.
+
+Important electrical rules:
+
+- Raspberry Pi GPIO uses 3.3 V logic.
+- Never connect a 5 V or 12 V signal directly to a GPIO pin.
+- Do not power the monitor, hard drives, or fans directly from GPIO.
+- Use an appropriate driver or interface for any load that exceeds GPIO limits.
+- Have the power distribution and master-power arrangement reviewed by a knowledgeable adult or qualified technician.
+
+## 6. GPIO Breakout and Point-to-Point Wiring
+
+The control panel will use ordinary wires and connectors rather than a custom PCB.
+
+The basic signal path is:
+
+Panel switch → individual wire → GPIO breakout board → Raspberry Pi GPIO
+
+The breakout board makes the pins easier to access. It does not automatically make a circuit safe or provide protection against incorrect voltage.
+
+### Wiring preparation
+
+1. Disconnect all power before wiring.
+2. Identify the exact GPIO breakout board and its pin numbering.
+3. Read the Raspberry Pi pinout and the selected switch datasheets.
+4. Choose the GPIO pins for each function and document them in a pin-assignment table.
+5. Test one switch at a time on a breadboard before installing the permanent wiring.
+6. Use suitable connectors and label both ends of every wire.
+7. Check the wiring for shorts and incorrect connections before powering the system.
+
+Do not guess the final GPIO pin assignments. They should be documented only after the selected breakout board and switch wiring are confirmed.
+
+### Intended control functions
+
+| Control            | Intended function                                            |
+| ------------------ | ------------------------------------------------------------ |
+| Master power       | Operate the approved power system                            |
+| Display            | Control a supported display function                         |
+| Radio enable       | Enable or disable compatible radio hardware                  |
+| Fan mode           | Change a supported fan-control setting                       |
+| Shutdown           | Request an orderly operating-system shutdown                 |
+| Status LED         | Indicate a software-defined system state                     |
+| Drive activity LED | Optional; requires supported hardware or software monitoring |
+| AUX/mode           | Trigger an additional dashboard function                     |
+
+The display, radio, and fan controls may initially be software commands rather than physical power disconnects. Their exact behavior depends on the selected hardware.
+
+### Shutdown button
+
+Use a normally-open momentary button connected as a low-voltage GPIO input using an appropriate input configuration. Software can detect the button press and request a clean shutdown.
+
+Test the shutdown function before installing the button permanently. Do not rely on abruptly disconnecting power as the normal shutdown procedure.
+
+### Status LED
+
+Use a suitable LED module or an LED with a correctly calculated current-limiting resistor. Confirm its voltage, polarity, and current requirements before connecting it to the control circuit.
+
+### Drive-activity LED
+
+Treat this as optional until the drive enclosure has been selected. Some USB-to-SATA bridges do not expose a physical activity signal, so a directly wired activity LED may not be possible.
+
+## 7. First Boot and Operating System Setup
+
+### Step 1 — Prepare the microSD card
+
+1. On another computer, download the official Raspberry Pi Imager application.
+2. Insert the microSD card.
+3. Select the appropriate Raspberry Pi 5 operating system image, such as Raspberry Pi OS 64-bit.
+4. Select the correct storage device. Writing the image erases its existing contents.
+5. Configure the initial username, password, hostname, locale, and optional Wi-Fi settings.
+6. Write the image and safely eject the card.
+
+Official reference: [https://www.raspberrypi.com/documentation/computers/getting-started.html](https://www.raspberrypi.com/documentation/computers/getting-started.html?utm_source=chatgpt.com)
+
+### Step 2 — Boot the Pi
+
+1. Insert the prepared microSD card into the Raspberry Pi 5.
+2. Connect the monitor using the micro-HDMI-to-HDMI cable.
+3. Connect the monitor's verified power supply.
+4. Connect the keyboard if needed.
+5. Connect the compatible Raspberry Pi USB-C power supply.
+6. Power on the Pi and complete the initial setup.
+7. Confirm that the display, keyboard, and desktop work.
+
+Initially, leave the removable drives and custom control wiring disconnected. Get the basic computer working first.
+
+### Step 3 — Update the operating system
+
+Open a terminal and run:
+
+```
+sudo apt update
+sudo apt full-upgrade -y
+sudo reboot
+```
+
+After restarting, open the terminal again and run:
+
+```
+uname -m
+free -h
+pinout
+```
+
+These commands show the system architecture, available memory, and GPIO pin layout.
+
+## 8. Connect the Hard Drives
+
+### 2.5-inch SATA drive
+
+1. Shut down the Raspberry Pi.
+2. Connect the 2.5-inch enclosure to USB.
+3. Provide any power required by its manufacturer.
+4. Boot the Pi.
+5. Open the file manager and confirm that the drive is detected.
+6. Create a test file and confirm it can be read back.
+
+### 3.5-inch SATA drive
+
+1. Shut down the Pi before the initial connection.
+2. Connect the 3.5-inch enclosure's specified power adapter.
+3. Connect the enclosure to USB.
+4. Boot the Pi.
+5. Confirm the drive is detected and its reported capacity is correct.
+6. Create and read a test file.
+
+You can also inspect detected storage devices from a terminal:
+
+```
+lsblk -o NAME,SIZE,FSTYPE,LABEL,MOUNTPOINTS
+```
+
+Do not format or initialize a drive unless you are certain it is empty or you intend to erase its existing data.
+
+### Removing a drive safely
+
+1. Stop file transfers and close files stored on the drive.
+2. Use the operating system's Eject or Safely Remove option.
+3. Wait for the drive to finish activity.
+4. Remove the tray or enclosure according to its manufacturer's instructions.
+
+Do not assume that a drive is safe to remove merely because it is in a removable bay.
+
+## 9. Set Up the Keyboard
+
+1. Charge the Fintie Bluetooth keyboard if needed.
+2. Enable Bluetooth in the operating system.
+3. Put the keyboard into pairing mode.
+4. Select it from the Bluetooth device list.
+5. Confirm that both the keyboard and trackpad work.
+6. Restart the Pi and confirm that the keyboard reconnects.
+
+Keep the keyboard external as planned rather than permanently wiring it into the case.
+
+## 10. Build the A.D.A. Local AI Assistant
+
+A.D.A. is intended to run locally so that its core functions do not depend on internet access.
+
+The Raspberry Pi 5 is capable of running lightweight local models, but performance depends on the Pi's RAM, model size, quantization, and workload.
+
+### Step 1 — Check memory
+
+Run:
+
+```
+free -h
+```
+
+Record the available memory before choosing the model.
+
+### Step 2 — Install a compatible local inference runtime
+
+Use the runtime's current official installation instructions for Linux ARM64. Do not assume that a model installed on Windows will work identically on Raspberry Pi OS.
+
+### Step 3 — Select a suitable model
+
+Choose a small model that is compatible with the runtime and fits the available memory. Test it with short prompts before building the rest of the assistant.
+
+The model previously used on Windows was `qwen3:1.7b` through Ollama. That is a starting point to investigate, not a guarantee that it will run at acceptable speed on the Pi.
+
+### Step 4 — Create the A.D.A. interface
+
+The interface should provide:
+
+- A text input for questions.
+- A response area.
+- Access to saved reference documents.
+- A system-status area.
+- A clear indication when the AI is unavailable or still loading.
+
+The base dashboard should still work when the AI model is not running.
+
+### Step 5 — Test offline operation
+
+1. Download the model and required documents while connected to the internet.
+2. Confirm that the model runs locally.
+3. Disable Wi-Fi.
+4. Ask A.D.A. a basic question.
+5. Search a local reference document.
+6. Record the response time and any memory or temperature problems.
+
+A local model can make mistakes. Preserve trusted source documents for important emergency information and make their filenames or references available to the user.
+
+## 11. Offline Library and Maps
+
+### Offline reference library
+
+Create a directory structure such as:
+
+```
+Cyberdeck/
+├── Manuals/
+├── Emergency_Guides/
+├── First_Aid/
+├── Repair_Manuals/
+├── Maps/
+├── Research/
+└── Notes/
+```
+
+Store downloaded documents and manuals locally. Keep a record of their sources and dates, and verify redistribution rights before publishing them.
+
+If you want all of Wikipedia, plan for substantial storage space and choose a suitable offline reader and archive format. Do not assume the entire archive will fit on a small boot card.
+
+### Offline maps
+
+1. Select a mapping application that supports offline map data.
+2. Download a small region first.
+3. Confirm that it displays correctly.
+4. Disable Wi-Fi and verify that the downloaded map remains accessible.
+5. Expand the downloaded region when storage capacity permits.
+
+### GPS expansion
+
+A GPS receiver can be added later. Choose a model with Linux compatibility, test it separately, and verify that it receives a position outdoors before integrating it into the dashboard.
+
+## 12. Radio and Cybersecurity Features
+
+### Radio
+
+Start with a compatible receive-only radio device. Verify its supported frequencies, drivers, antenna requirements, and local regulations. Radio reception is not a guarantee of emergency communication.
+
+Any future transmitting equipment should be selected and operated in accordance with applicable rules and licensing requirements.
+
+### Cybersecurity learning environment
+
+Use the Raspberry Pi for Linux, Python, networking fundamentals, system monitoring, and authorized security exercises. Keep practice environments isolated and test only systems you own or have permission to assess.
+
+## 13. Software for the Physical Controls
+
+Once the basic computer works, write a small Python program to handle the control panel.
+
+The program should:
+
+- Read the configured GPIO inputs.
+- Detect button presses reliably.
+- Request orderly shutdown when the shutdown button is pressed.
+- Update the status LED.
+- Trigger dashboard modes when the AUX button is pressed.
+- Use documented interfaces for supported fan or radio functions.
+- Record useful errors for troubleshooting.
+
+Start with one button and one LED. Test the wiring and software before adding the remaining controls.
+
+Do not create an automatic startup service until the program and pin assignments are stable. Keep a copy of the source code and configuration files.
+
+## 14. Final Assembly and Integration
+
+After the individual subsystems have passed their tests:
+
+1. Disconnect power.
+2. Install the monitor and confirm its retention.
+3. Secure the Raspberry Pi and cooling system.
+4. Install the removable drive enclosures and confirm their release mechanisms work.
+5. Route and secure the USB, HDMI, and power cables.
+6. Install the GPIO breakout and control-panel wiring.
+7. Inspect every connection and confirm that no wire is pinched.
+8. Close the case slowly and verify that the hinges do not pull on any cables.
+9. Power on and test each function separately.
+10. Run a file-transfer test and a short local AI test while monitoring temperature.
+11. Verify that the system can be shut down cleanly.
+12. Repeat the offline tests with Wi-Fi disabled.
+
+Do not operate the computer under heavy load with obstructed ventilation.
+
+## 15. Final Test Checklist
+
+Mark each item only after it has actually been tested.
+
+- Raspberry Pi 5 boots reliably.
+- Display works and is securely mounted.
+- Keyboard and trackpad connect reliably.
+- Cooling system operates correctly.
+- 2.5-inch SATA drive is detected and readable.
+- 3.5-inch SATA drive is detected and readable.
+- The 3.5-inch enclosure supports the intended drive capacity.
+- Both removable bays are secure and accessible.
+- All control-panel switches have documented functions.
+- GPIO wiring has been checked for incorrect voltages and shorts.
+- Shutdown button requests a clean shutdown.
+- Status LED behaves as intended.
+- A.D.A. runs locally.
+- A.D.A. works with Wi-Fi disabled.
+- Offline documents are accessible.
+- Downloaded maps work without internet access.
+- Temperature and storage behavior remain acceptable during testing.
+- Power runtime has been measured rather than estimated.
+- Case opens and closes without pinching cables.
+- Build notes distinguish working features from planned features.
+
+## 16. Troubleshooting
+
+The display stays blank: Check the monitor's selected input, HDMI cable, Pi micro-HDMI connection, and verified monitor power adapter.
+
+The Pi reports undervoltage: Check the USB-C power supply and cable. Disconnect unnecessary USB devices and consider a suitable powered USB hub.
+
+A drive does not appear: Check the enclosure's power, USB connection, compatibility, and operating-system storage listing.
+
+The drive reports the wrong capacity: Verify the enclosure's supported capacity and the operating system's reported device size before changing partitions or formatting.
+
+A GPIO button does not work: Verify the selected pin, ground connection, switch type, input configuration, and program logs. Never test GPIO by applying 5 V or 12 V.
+
+A.D.A. runs slowly: Try a smaller model, reduce the context size, close other applications, and check available memory and temperature.
+
+The case becomes hot: Stop the workload, inspect the cooling system, and improve ventilation before resuming tests.
+
+## 17. Engineering Status and Remaining Decisions
+
+This document is the assembly and software plan. It is not evidence that the cyberdeck has already been built or tested.
+
+Before finalizing exact wiring and mounting instructions, confirm:
+
+1. The exact Raspberry Pi 5 bundle contents and RAM.
+2. The monitor's model number and power-adapter specifications.
+3. The exact 2.5-inch and 3.5-inch drive enclosures.
+4. The selected panel-switch models and wiring types.
+5. The power source and its rated outputs.
+6. The final GPIO pin assignment table.
+
+No custom PCB is required. The control panel will use a GPIO breakout board and individual wires, while both hard drives connect through their own USB-to-SATA hardware.
+
+The best build order is to get the Raspberry Pi and monitor working first, test both drive enclosures, then assemble the case and control panel, and finally add A.D.A., offline maps, and optional radio/GPS features.
