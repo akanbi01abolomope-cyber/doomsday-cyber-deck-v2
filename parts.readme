@@ -1,0 +1,205 @@
+# Doomsday Cyberdeck — Master Parts List
+
+## Project Overview
+
+A rugged, battery-powered portable computer built around a Raspberry Pi 5, a 13.3-inch HDMI display, a Bluetooth keyboard/trackpad, and two removable SATA hard drives. The case will be selected later, with a preference for a large, hard-sided equipment case that has enough room for the electronics, battery, cooling, cabling, and one removable drive bay on each side.
+
+**Current known subtotal:** $347 before tax and shipping.
+
+**Status key**
+- `[OWNED]` — Already owned.
+- `[SELECTED]` — Chosen for the build.
+- `[BUY]` — Still needs to be purchased.
+- `[VERIFY]` — Confirm specifications or compatibility before buying.
+- `[CASE-DEPENDENT]` — Depends on the final case dimensions and layout.
+- `[OPTIONAL]` — Useful addition, but not essential to the initial build.
+
+---
+
+## Master Parts List
+
+| # | Component | Status | Quantity | Price / Notes |
+|---:|---|---|---:|---|
+| 1 | Raspberry Pi 5 bundle | `[SELECTED]` | 1 | $303; includes microSD, cooling fan, and stated bundle accessories |
+| 2 | microSD card | `[INCLUDED]` | 1 | Included in Pi bundle; do not buy separately unless upgrading |
+| 3 | Raspberry Pi cooling fan | `[INCLUDED]` | 1 | Included in Pi bundle |
+| 4 | Bundle toggle switch | `[INCLUDED]` | 1 | Verify its intended function and electrical rating |
+| 5 | 13.3-inch HDMI monitor | `[SELECTED]` | 1 | $44; approximately 307 × 178 mm; rated 12V / 2A |
+| 6 | Micro-HDMI-to-HDMI cable | `[VERIFY]` | 1 | Required if not included with the monitor |
+| 7 | Fintie Bluetooth keyboard/trackpad | `[OWNED]` | 1 | External keyboard; no internal keyboard mounting required |
+| 8 | 2.5-inch SATA laptop HDD | `[OWNED]` | 1 | Existing drive |
+| 9 | 3.5-inch SATA desktop HDD | `[OWNED]` | 1 | Existing drive; requires 5V and 12V SATA power |
+| 10 | Large hard-sided equipment case | `[BUY]` | 1 | Select after comparing internal dimensions and layout |
+| 11 | Left-side removable drive bay/caddy | `[BUY]` `[CASE-DEPENDENT]` | 1 | Intended for the 2.5-inch SATA HDD |
+| 12 | Right-side removable drive bay/caddy | `[BUY]` `[CASE-DEPENDENT]` | 1 | Intended for the 3.5-inch SATA HDD |
+| 13 | SATA-to-USB bridge for 2.5-inch HDD | `[VERIFY]` | 1 | Only needed if the selected bay does not include compatible USB electronics |
+| 14 | SATA-to-USB bridge for 3.5-inch HDD | `[VERIFY]` | 1 | Must support the chosen drive and interface |
+| 15 | Powered USB hub | `[BUY]` `[VERIFY]` | 1 | External power input; enough ports and current capacity for attached devices |
+| 16 | Commercial battery power station | `[BUY]` `[VERIFY]` | 1 | Must power every component simultaneously; evaluate capacity, output, and physical size |
+| 17 | Raspberry Pi USB-C power connection | `[VERIFY]` | 1 | Provide a stable 5V supply; target 5A capability for full peripheral allowance |
+| 18 | Monitor power adapter or compatible DC output | `[VERIFY]` | 1 | Must match the monitor's specified 12V / 2A input and connector |
+| 19 | 3.5-inch HDD power supply | `[VERIFY]` | 1 | Must supply both 5V and 12V SATA power with adequate startup current |
+| 20 | 2.5-inch HDD power provision | `[VERIFY]` | 1 | Confirm the USB bridge/hub can handle drive startup current |
+| 21 | Power distribution and suitable adapters | `[BUY]` `[VERIFY]` | As needed | Use rated, compatible outputs; no improvised battery connections |
+| 22 | USB 3 data cables | `[BUY]` `[VERIFY]` | As needed | Correct connectors and lengths for the two drive interfaces |
+| 23 | HDMI cable routing and strain relief | `[BUY]` `[CASE-DEPENDENT]` | As needed | Protect connectors from being pulled or bent |
+| 24 | Internal mounting brackets and hardware | `[BUY]` `[CASE-DEPENDENT]` | As needed | Secure the Pi, hub, monitor, bays, and battery |
+| 25 | Reinforcement for drive-bay openings | `[BUY]` `[CASE-DEPENDENT]` | As needed | Prevent case walls from flexing around side openings |
+| 26 | Ventilation openings or vents | `[CASE-DEPENDENT]` | As needed | Allow airflow around Pi, drives, and power equipment |
+| 27 | Cable ties, mounts, and cable sleeves | `[BUY]` | As needed | Keep data and power cables secure and organized |
+| 28 | Main power switch | `[VERIFY]` | 1 | Choose only after deciding how the power station and adapters will be switched |
+| 29 | Safe shutdown control or procedure | `[BUY]` / configuration | 1 | Shut down the operating system before disconnecting power |
+| 30 | Drive labels | `[OPTIONAL]` | 2 | Label the removable drives clearly |
+| 31 | Spare compatible data cable | `[OPTIONAL]` | 1 | Useful for troubleshooting |
+| 32 | External backup drive or backup destination | `[OPTIONAL]` | 1 | Recommended for important data |
+
+---
+
+## HDD Connection Architecture
+
+The Raspberry Pi 5 does not have native SATA drive connectors. Each HDD must connect through a compatible SATA-to-USB interface, unless the selected bay already includes one.
+
+```text
+                       BATTERY POWER STATION
+                                |
+                    +-----------+-----------+
+                    |           |           |
+                 Pi power    Monitor      Drive power
+                    |         power          |
+                    |           |        +---+---+
+                    |           |        |       |
+                    |           |    2.5-inch  3.5-inch
+                    |           |      HDD       HDD
+                    |           |        |       |
+                    |           |    SATA-USB  SATA-USB
+                    |           |     bridge     bridge
+                    |           |        |       |
+                    |           |        +---+---+
+                    |           |            |
+                    |           |      Powered USB hub
+                    |           |            |
+                    +-----------+------ Raspberry Pi 5
+                                         |
+                                      HDMI out
+                                         |
+                                  13.3-inch monitor
+
+Bluetooth keyboard/trackpad connects wirelessly to the Pi.
+```
+
+### Left-side drive bay — 2.5-inch HDD
+
+- Install the removable 2.5-inch SATA HDD caddy in the left-side opening.
+- Connect the drive to a compatible SATA-to-USB bridge.
+- Connect the bridge to the powered USB hub or an appropriate Pi USB port.
+- Confirm the drive receives sufficient power during startup and normal use.
+- Provide a secure mounting point and enough room to release the caddy.
+
+### Right-side drive bay — 3.5-inch HDD
+
+- Install the removable 3.5-inch SATA HDD caddy in the right-side opening.
+- Connect the drive to a compatible SATA-to-USB bridge.
+- Supply the drive with both 5V and 12V SATA power through a suitable rated power supply or dock.
+- Connect the USB data interface to the powered USB hub or an appropriate Pi USB port.
+- Confirm the bay, bridge, and power supply are compatible before ordering.
+
+**Important:** The existing 12V / 2A adapter must not be assumed to power the 3.5-inch HDD by itself. Confirm whether it is part of a complete adapter/dock that also supplies the drive's 5V rail.
+
+---
+
+## Battery and Power Requirements
+
+All components must operate from battery power. No component should require a wall outlet during normal use.
+
+The initial design should use a commercial battery power station with compatible outputs and suitable power adapters. Do not choose the battery based only on its advertised wattage; verify the output profiles, total capacity, continuous output, connectors, and startup-current requirements.
+
+| Device | Required power provision |
+|---|---|
+| Raspberry Pi 5 | Stable 5V USB-C supply; target 5A capability |
+| HDMI monitor | 12V / 2A input |
+| 2.5-inch HDD | Compatible SATA power via its bridge or hub |
+| 3.5-inch HDD | Both 5V and 12V SATA power |
+| Powered USB hub | Its specified external power input |
+| Bluetooth keyboard | Internal rechargeable battery or its normal charging method |
+
+The Pi 5's available downstream USB current is limited when using a lower-current power supply. A powered hub helps avoid relying on the Pi to supply all the drive power. See the official Raspberry Pi power guidance: https://www.raspberrypi.com/documentation/computers/raspberry-pi.html
+
+### Existing power bank
+
+`[OWNED]` 65W, 20,000mAh power bank.
+
+Do not assume it can run the complete cyberdeck. Verify its supported output voltages, USB-C power profiles, simultaneous-output behavior, usable capacity, and whether it can supply the Pi and other devices together. It can remain a backup or test power source until verified.
+
+### Battery sizing
+
+A 250–300Wh commercial power station is an initial sizing candidate, not a confirmed requirement. Measure the assembled system's actual power consumption and account for conversion losses and HDD startup demand before deciding on a final battery.
+
+---
+
+## Software and Storage Configuration
+
+- Use the included microSD card for the operating system unless a later upgrade is chosen.
+- Use the Pi's USB 3 ports for the HDD interfaces where practical.
+- Give each drive a stable mount name, such as `LAPTOP_HDD` and `DESKTOP_HDD`.
+- Mount drives by filesystem UUID rather than relying on changing device names such as `/dev/sda`.
+- Configure the operating system to mount the drives reliably at startup.
+- Unmount or eject a drive in software before removing its caddy.
+- Shut down the Pi cleanly before disconnecting its power source.
+- Keep backups of important data; removable HDDs are not themselves a backup strategy.
+
+---
+
+## Case and Mechanical Layout
+
+The final case has not yet been selected. Do not treat previous concept dimensions as final manufacturing dimensions.
+
+The chosen case must accommodate:
+
+- The 13.3-inch display and its mounting frame.
+- The Raspberry Pi 5 and its cooling fan.
+- One removable HDD bay on each opposite side.
+- The full depth of the 3.5-inch drive, caddy, SATA connectors, and power connector.
+- The 2.5-inch drive and its caddy.
+- The battery power station or a suitably secured battery arrangement.
+- The powered USB hub and cable bends.
+- Power adapters, distribution, and cable routing.
+- Ventilation and access for service.
+- Reinforced walls around both drive-bay cutouts.
+
+Measure the case's **internal** dimensions and check the depth behind every opening. Leave clearance for connectors, caddy release mechanisms, airflow, and mounting hardware.
+
+---
+
+## Known Cost Summary
+
+| Item | Amount |
+|---|---:|
+| Raspberry Pi 5 bundle | $303 |
+| 13.3-inch HDMI monitor | $44 |
+| **Known subtotal** | **$347** |
+| Large case | TBD |
+| Two removable drive bays | TBD |
+| SATA-to-USB interfaces | TBD |
+| Powered USB hub | TBD |
+| Battery power station | TBD |
+| Power adapters and cables | TBD |
+| Mounting hardware and ventilation | TBD |
+
+All prices other than the known subtotal remain unconfirmed. The total build cost will be updated after the case and compatible drive hardware are selected.
+
+---
+
+## Purchase Order
+
+1. Find and measure a large hard-sided case.
+2. Confirm the internal dimensions and available depth for both side bays.
+3. Choose removable caddies that fit the case and the two different HDD sizes.
+4. Confirm whether the caddies include SATA-to-USB electronics.
+5. Confirm the 3.5-inch drive's 5V and 12V power requirements.
+6. Choose a powered USB hub compatible with the two drives.
+7. Select a battery power station based on the measured total load and startup requirements.
+8. Buy the necessary adapters, cables, mounting hardware, and ventilation parts.
+9. Assemble and test the Pi, display, hub, and drives outside the case before cutting or drilling the case.
+10. Finalize the mechanical layout, then secure the components and test the complete battery-powered system.
+
+**Build status:** Core computer, display, keyboard, and HDDs are selected or owned. The case, removable bays, USB interfaces, and battery system remain open purchasing decisions until dimensions and electrical compatibility are confirmed.
